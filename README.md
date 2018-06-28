@@ -1,7 +1,7 @@
 # silverstripe-simpleinstagram
 Retrieves the Instagram feed for a given user for embedding in a SilverStripe template
 
-This module is a simple wrapper for the [Instagram user fee PHP library](https://github.com/pgrimaud/instagram-user-feed)
+This module is a simple wrapper for the [Instagram user feed PHP library](https://github.com/pgrimaud/instagram-user-feed)
 
 
 # Requirements
