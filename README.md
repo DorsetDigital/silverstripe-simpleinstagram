@@ -1,6 +1,10 @@
 # silverstripe-simpleinstagram
 Retrieves the Instagram feed for a given user for embedding in a SilverStripe template
 
+[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](LICENSE.md)
+[![Version](http://img.shields.io/packagist/v/dorsetdigital/silverstripe-simpleinstagram.svg?style=flat)](https://packagist.org/packages/dorsetdigital/silverstripe-simpleinstagram)
+
+
 This module is a simple wrapper for the [Instagram user feed PHP library](https://github.com/pgrimaud/instagram-user-feed)
 
 
