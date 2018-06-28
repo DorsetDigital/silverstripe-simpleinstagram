@@ -26,37 +26,35 @@ class InstagramHelper
   $this->api = new Api($cache);
   $this->api->setUserName($userName);
  }
- 
+
  public function getFeed()
  {
   $feed = $this->api->getFeed();
-  if ($feed) {
-   $itemList = ArrayList::create();
-   foreach ($feed->getMedias() as $item) {
-    $itemList->push(ArrayData::create([
-            'ID' => $item->getId(),
-            'Type' => $item->getTypeName(),
-            'Link' => $item->getLink(),
-            'ThumbURL' => $item->getThumbnailSrc(),
-            'Caption' => $item->getCaption(),
-            'Likes' => $item->getLikes(),
-            'Date' => $item->getDate()->format('h:i d-m-Y')
-    ]));
-   }
-
-   $list = ArrayData::create([
-           'Items' => $itemList,
-           'ProfileImage' => $feed->getProfilePicture(),
-           'Link' => 'https://www.instagram.com/' . $feed->userName,
-           'Bio' => $feed->getBiography(),
-           'ID' => $feed->getId(),
-           'FullName' => $feed->getFullName(),
-           'Followers' => $feed->getFollowers(),
-           'UserName' => $feed->getUserName(),
-           'Following' => $feed->getFollowing()
-   ]);
-
-   return $list;
+  $itemList = ArrayList::create();
+  foreach ($feed->getMedias() as $item) {
+   $itemList->push(ArrayData::create([
+           'ID' => $item->getId(),
+           'Type' => $item->getTypeName(),
+           'Link' => $item->getLink(),
+           'ThumbURL' => $item->getThumbnailSrc(),
+           'Caption' => $item->getCaption(),
+           'Likes' => $item->getLikes(),
+           'Date' => $item->getDate()->format('h:i d-m-Y')
+   ]));
   }
+
+  $list = ArrayData::create([
+          'Items' => $itemList,
+          'ProfileImage' => $feed->getProfilePicture(),
+          'Link' => 'https://www.instagram.com/' . $feed->userName,
+          'Bio' => $feed->getBiography(),
+          'ID' => $feed->getId(),
+          'FullName' => $feed->getFullName(),
+          'Followers' => $feed->getFollowers(),
+          'UserName' => $feed->getUserName(),
+          'Following' => $feed->getFollowing()
+  ]);
+
+  return $list;
  }
 }
