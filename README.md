@@ -1,6 +1,8 @@
 # silverstripe-simpleinstagram
 Retrieves the Instagram feed for a given user for embedding in a SilverStripe template
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/DorsetDigital/silverstripe-simpleinstagram/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/DorsetDigital/silverstripe-simpleinstagram/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/DorsetDigital/silverstripe-simpleinstagram/badges/build.png?b=master)](https://scrutinizer-ci.com/g/DorsetDigital/silverstripe-simpleinstagram/build-status/master)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](LICENSE.md)
 [![Version](http://img.shields.io/packagist/v/dorsetdigital/silverstripe-simpleinstagram.svg?style=flat)](https://packagist.org/packages/dorsetdigital/silverstripe-simpleinstagram)
 
