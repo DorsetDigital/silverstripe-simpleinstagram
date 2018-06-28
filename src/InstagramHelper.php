@@ -40,7 +40,7 @@ class InstagramHelper
             'ThumbURL' => $item->getThumbnailSrc(),
             'Caption' => $item->getCaption(),
             'Likes' => $item->getLikes(),
-            'Date' => $item->getDate() . format('h:i d-m-Y')
+            'Date' => $item->getDate()->format('h:i d-m-Y')
     ]));
    }
 
