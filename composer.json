@@ -1,0 +1,22 @@
+{
+    "name": "dorsetdigital/silverstripe-simpleinstagram",
+    "description": "Retrieves the Instagram feed for a given user for embedding in a template",
+    "type": "silverstripe-vendormodule",
+    "license": "BSD-3-Clause",
+    "keywords": ["silverstripe", "social", "instagram"],
+    "authors": [
+        {
+            "name": "Tim Burt - Dorset Digital Ltd",
+            "email": "tim@dorset-digital.net"
+        }
+    ],
+    "require": {
+        "silverstripe/framework": "^4.0",
+        "pgrimaud/instagram-user-feed": "^5.0"
+    },
+    "autoload": {
+     "psr-4": {
+      "DorsetDigital\\SimpleInstagram\\": "src/"
+     }
+    }
+}
