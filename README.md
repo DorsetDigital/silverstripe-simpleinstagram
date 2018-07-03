@@ -64,5 +64,18 @@ and then in your HomePage.ss file you would use the following syntax to display 
 
 The markup shown above is purely for example purposes.  You can format / style it any way you want to suit your project.
 
-Note: It is strongly recommended that you wrap the Instagram feed data in a SilverStripe cache block to help reduce the dependency on the external service.
 
+# Performance 
+In order to help reduce the dependency on the external service and to improve efficiency, the module supports caching via the standard SilverStripe mechanisms.   Caching is disabled by default, but it can be enabled by adding a yml configuration to your project, eg:
+
+```yaml
+---
+Name: instagramcache
+---
+
+DorsetDigital\SimpleInstagram\InstagramHelper:
+  enable_cache: true
+  cache_time: 900
+```
+
+Enable the cache by setting `enable_cache` to `true`.  Set the cache time (in seconds) with `cache_time`
