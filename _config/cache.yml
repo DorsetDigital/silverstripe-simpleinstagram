@@ -1,0 +1,9 @@
+---
+Name: DDInstaCache
+---
+SilverStripe\Core\Injector\Injector:
+  Psr\SimpleCache\CacheInterface.DDInstaCache:
+    factory: SilverStripe\Core\Cache\DefaultCacheFactory
+    constructor:
+      namespace: "DDInstaCache"
+      defaultLifetime: 900

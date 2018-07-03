@@ -7,28 +7,61 @@ use SilverStripe\Control\Director;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\View\ArrayData;
 use SilverStripe\Core\Injector\Injectable;
+use Psr\SimpleCache\CacheInterface;
+use SilverStripe\Core\Flushable;
+use SilverStripe\Core\Injector\Injector;
+use SilverStripe\Core\Config\Configurable;
 
 /**
  * Simple wrapper to get the Instagram feed of a user and return it as a SilverStripe data list
  *
  * @author Tim Burt - dorset-digital.net
  */
-class InstagramHelper
+class InstagramHelper implements Flushable
 {
 
  use Injectable;
+ use Configurable;
 
  private $api;
+ private $cache;
+
+ /**
+  * @config
+  *
+  * Enable caching of feed via Silverstripe cache mechanisms
+  * @var bool
+  */
+ private static $enable_cache = false;
+
+ /**
+  * @config
+  *
+  * Cache time
+  * @var bool
+  */
+ private static $cache_time = 900;
 
  public function __construct($userName)
  {
-  $cache = new CacheManager(Director::baseFolder() . DIRECTORY_SEPARATOR . 'instagram-');
-  $this->api = new Api($cache);
+  $instaCache = new CacheManager(Director::baseFolder() . DIRECTORY_SEPARATOR . 'instagram-');
+  $this->api = new Api($instaCache);
   $this->api->setUserName($userName);
+
+  if ($this->config()->get('enable_cache') === true) {
+   $this->cache = Injector::inst()->get(CacheInterface::class . '.DDInstaCache');
+  }
  }
 
  public function getFeed()
  {
+
+  $cacheKey = 'InstagramCache';
+
+  if (($this->config()->get('enable_cache') === true) && ($this->cache->has($cacheKey))) {
+   return unserialize($this->cache->get($cacheKey));
+  }
+
   $feed = $this->api->getFeed();
   $itemList = ArrayList::create();
   foreach ($feed->getMedias() as $item) {
@@ -55,6 +88,15 @@ class InstagramHelper
           'Following' => $feed->getFollowing()
   ]);
 
+  if ($this->config()->get('enable_cache') === true) {
+   $this->cache->set($cacheKey, serialize($list), $this->config()->get('cache_time'));
+  }
+
   return $list;
+ }
+
+ public static function flush()
+ {
+  Injector::inst()->get(CacheInterface::class . '.DDInstaCache')->clear();
  }
 }
