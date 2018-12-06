@@ -20,7 +20,7 @@ This module is a simple wrapper for the [Instagram user feed PHP library](https:
 
 # Usage
 
-To use the module, you will need to add a couple of bits of code to your template and its associated controller.  The Instagram username is passed in as the (required) argument when instantiating the class.
+To use the module, you will need to add a couple of bits of code to your template and its associated model.  The Instagram username is passed in as the (required) argument when instantiating the class.
 For example, if you were adding a feed to your HomePage class for the 'natgeo' Instagram account:
 
 ```php
